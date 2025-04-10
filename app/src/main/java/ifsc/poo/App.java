@@ -76,6 +76,26 @@ public class App {
             System.out.println("O retângulo com maior razão entre área e perímetro é o retângulo " + numRet + " com razão " + razao);
         }
     }
+
+    public static void classeRelogio(){
+        Relogio relogio = new Relogio();
+
+        relogio.ajustaHora((byte) 14, (byte) 58, (byte) 32);
+
+        for (int i = 0; i < 2; i++){
+            relogio.avancaMinuto();
+        }
+
+        System.out.println(relogio.getHora());
+
+        relogio.ajustaHora((byte) 24, (byte)59, (byte)59);
+
+        relogio.avancaSegundo();
+
+        System.out.println(relogio.getHora());
+    }
+
+
     public static void main(String[] args) {
         System.out.println("Escolha a classe que queira testar: \n1 - Lampada \n2 - Pessoa");
         Scanner scanner = new Scanner(System.in);
@@ -87,6 +107,8 @@ public class App {
             case 2 -> classePessoa();
 
             case 3 -> classeRetangulo();
+
+            case 4 -> classeRelogio();
 
             default -> System.out.println("Opção inválida");
         }
