@@ -1,9 +1,11 @@
 package ifsc.poo;
 import java.util.Scanner;
+import java.util.Random;
 
 public class App {
  
     public static void classeLampada() {
+        System.out.println("---------------Classe Lâmpada---------------");
         Lampada[] lamps = new Lampada[2];
 
         lamps[0] = new Lampada();
@@ -25,6 +27,7 @@ public class App {
     }
 
     public static void classePessoa() {
+        System.out.println("---------------Classe Pessoa---------------");
         Pessoa[] pessoas = new Pessoa[2];
 
         pessoas[0] = new Pessoa();
@@ -45,6 +48,7 @@ public class App {
     }
 
     public static void classeRetangulo() {
+            System.out.println("---------------Classe Retângulo---------------");        
             Retangulo retangulo1 = new Retangulo();
             Retangulo[] retangulos = new Retangulo[10]; 
 
@@ -78,6 +82,7 @@ public class App {
     }
 
     public static void classeRelogio(){
+        System.out.println("---------------Classe Relógio---------------");
         Relogio relogio = new Relogio();
 
         relogio.ajustaHora((byte) 14, (byte) 58, (byte) 32);
@@ -88,16 +93,97 @@ public class App {
 
         System.out.println(relogio.getHora());
 
-        relogio.ajustaHora((byte) 24, (byte)59, (byte)59);
+        relogio.ajustaHora((byte) 23, (byte)59, (byte)59);
 
         relogio.avancaSegundo();
 
         System.out.println(relogio.getHora());
     }
 
+    public static void classeProduto(){
+        Produto produto1 = new Produto();
+        Produto produto2 = new Produto();
+
+        System.out.println("---------------Classe Produto---------------");
+
+        produto1.setNome("Geladeira");
+        produto1.setPreco(832);
+
+        produto2.setNome("Micro-ondas");
+        produto2.setPreco(499);
+
+        produto1.setDesconto(6);
+        produto2.setDesconto(12);
+
+        System.out.printf("%.2f\n", produto1.getPreco() - (produto1.getPreco() * produto1.getDesconto() / 100));
+        System.out.printf("%.2f\n", produto2.getPreco() - (produto2.getPreco() * produto2.getDesconto() / 100));
+
+        System.out.println(produto1.anuncio());
+        System.out.println(produto2.anuncio());
+
+        //(por algum motivo minha classe produto so funciona no diretorio ifsc e não junto com as outras) 
+
+        //resposta para pergunta
+        //eu trataria os valores de preço e desconto como float, para evitar perda de precisão
+        //assim eu poderia tratar o preço com desconto no próprio metodo de preço, botando desconto de 0 caso não houvesse colocado um desconto ainda
+    }
+
+    public static void classeLivro(){
+        System.out.println("---------------Classe Livro---------------");
+        Livro livro = new Livro();
+
+        livro.setTitulo("O Senhor dos Anéis - A Sociedade do Anel");
+        System.out.println(livro.getTitulo());
+
+        livro.setAutor("J.R.R. Tolkien");
+        System.out.println(livro.getAutor());
+
+        livro.setGenero1("Fantasia");
+        livro.setGenero2("Aventura");
+        System.out.println(livro.getGenero1() + " e " + livro.getGenero2());
+
+        livro.setMaxPaginas(464);
+
+        //capitulos
+        String[] capitulos = new String[]{
+            "Uma Festa Muito Esperada",
+            "A Sombra do Passado",
+            "Três é Demais",
+            "Um Atalho para Cogumelos",
+            "Uma Conspiração Desmascarada",
+            "A Floresta Velha",
+            "Em Casa de Tom Bombadil",
+            "Névoa nas Colinas dos Túmulos",
+            "No Pônei Empinado",
+            "Passolargo",
+            "Um Faca na Noite",
+            "Voo para o Vau",
+            "Muitos Encontros",
+            "O Conselho de Elrond",
+            "O Anel Vai para o Sul",
+            "Uma Jornada no Escuro",
+            "A Ponte de Khazad-dûm",
+            "Lothlórien",
+            "O Espelho de Galadriel",
+            "Adeus a Lórien",
+            "O Grande Rio",
+            "A Partida da Sociedade"
+        };
+        livro.setCapitulos(capitulos);
+        //leitura
+
+        livro.lerPaginas(90);
+        System.out.println(livro.getCapitulo());
+
+        livro.lerPaginas(300);
+        System.out.println(livro.getCapitulo());
+
+        livro.lerPaginas(100);
+
+    }
 
     public static void main(String[] args) {
-        System.out.println("Escolha a classe que queira testar: \n1 - Lampada \n2 - Pessoa");
+        System.out.println("Escolha a classe que queira testar: \n1 - Lampada \n2 - Pessoa \n3 - Retangulo \n4 - Relogio \n5 - Produto \n6 - Livro \n7 - Sair");
         Scanner scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
 
@@ -109,6 +195,16 @@ public class App {
             case 3 -> classeRetangulo();
 
             case 4 -> classeRelogio();
+        
+            case 5 -> classeProduto();
+
+            case 6 -> classeLivro();
+
+            case 7 -> {
+                System.out.println("Saindo...");
+                scanner.close();
+                return;
+            }
 
             default -> System.out.println("Opção inválida");
         }

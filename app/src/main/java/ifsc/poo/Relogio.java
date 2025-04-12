@@ -28,38 +28,25 @@ public class Relogio{
     }
 
     public void avancaHora(){
-        hora++;
+        this.hora++;
         if(hora == 24){
             hora = 0;
         }
     }
 
     public void avancaMinuto(){
-        minuto++;
+        this.minuto++;
         if(minuto == 60){
+            avancaHora();
             minuto = 0;
-            hora++;
-            if(hora == 24){
-                hora = 0;
-            }
         }
     }
 
     public void avancaSegundo(){
-        segundo++;
+        this.segundo++;
         if(segundo == 60){
+            avancaMinuto();
             segundo = 0;
-            minuto++;
-            if(minuto == 60){
-                minuto = 0;
-                hora++;
-                if(hora == 24){
-                    hora = 0;
-                }
-            }
         }
     }
-
-
-
 }   
