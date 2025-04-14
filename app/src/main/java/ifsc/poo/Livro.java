@@ -7,10 +7,10 @@ public class Livro {
     private String genero2;
 
     private int max_capitulos;
-    private int capituloAtual = 0;
+    private int capituloAtual;
     private String nomesCapitulos[] = new String[30];
 
-    private int paginas = 0;
+    private int paginas;
     private int max_paginas;
     private int mudanca_capitulo[] = new int[]{
         23,

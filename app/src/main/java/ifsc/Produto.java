@@ -15,7 +15,7 @@ public class Produto{
         this.preco = preco;
     }
     public float getPreco(){
-        return this.preco;
+        return (float) this.preco - (float)(this.preco * this.desconto / 100.0);
     }
     public void setDesconto(int desconto){
         this.desconto = desconto;

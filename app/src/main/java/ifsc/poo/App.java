@@ -115,8 +115,8 @@ public class App {
         produto1.setDesconto(6);
         produto2.setDesconto(12);
 
-        System.out.printf("%.2f\n", produto1.getPreco() - (produto1.getPreco() * produto1.getDesconto() / 100));
-        System.out.printf("%.2f\n", produto2.getPreco() - (produto2.getPreco() * produto2.getDesconto() / 100));
+        System.out.printf("%.2f\n", produto1.getPreco());
+        System.out.printf("%.2f\n", produto2.getPreco());
 
         System.out.println(produto1.anuncio());
         System.out.println(produto2.anuncio());
