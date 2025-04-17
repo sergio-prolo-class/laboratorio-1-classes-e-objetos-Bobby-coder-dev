@@ -4,20 +4,28 @@ public class Retangulo {
     private float largura;
     private float altura;
 
-    public void setLargura(float largura) {
-        if (largura <= 0) {
-            System.out.println("Largura inválida");
-            return;
-        }
-        this.largura = largura;
+
+    public Retangulo(float largura, float altura){
+        setLargura(largura);
+        setAltura(altura);
     }
 
-    public void setAltura(float altura) {
+    public boolean setLargura(float largura) {
+        if (largura <= 0) {
+            this.largura = 1;
+            return false;
+        }
+        this.largura = largura;
+        return true;
+    }
+
+    public boolean setAltura(float altura) {
         if (altura <= 0) {
-            System.out.println("Altura inválida");
-            return;
+            this.altura = 1;
+            return false;
         }
         this.altura = altura;
+        return true;
     }
 
     public float getArea () {

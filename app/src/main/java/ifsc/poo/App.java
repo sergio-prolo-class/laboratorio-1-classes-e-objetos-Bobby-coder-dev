@@ -6,98 +6,102 @@ public class App {
  
     public static void classeLampada() {
         System.out.println("---------------Classe Lâmpada---------------");
-        Lampada[] lamps = new Lampada[2];
+        Lampada[] lamps = new Lampada[3];
 
-        lamps[0] = new Lampada();
-        lamps[1] = new Lampada();
+        lamps[0] = new Lampada(true); //ligada
+        lamps[1] = new Lampada(false); //desligada
+        lamps[2] = new Lampada(true); //ligada
 
-        lamps[0].ligar();
-        lamps[1].desligar();
-
-        if(lamps[0].verEstado()){
-            System.out.println("Lampada 1 está ligada");
+        if(lamps[0].ligar()){
+            System.out.println("Lampada Ligada!");
         } else {
-            System.out.println("Lampada 1 está desligada");
+            System.out.println("Lampada já está ligada!");
         }
-        if(lamps[1].verEstado()){
-            System.out.println("Lampada 2 está ligada");
+
+        if(lamps[0].desligar()){
+            System.out.println("Lampada desligada!");
         } else {
-            System.out.println("Lampada 2 está desligada");
+            System.out.println("Lampada já está desligada!");
         }
+
+        if(lamps[1].desligar()){
+            System.out.println("Lampada desligada!");
+        } else {
+            System.out.println("Lampada já está desligada!");
+        }if(lamps[1].ligar()){
+            System.out.println("Lampada Ligada!");
+        } else {
+            System.out.println("Lampada já está ligada!");
+        }
+
+        System.out.printf("Foram criadas %d lampadas no total!\n", Lampada.contar_lampadas());
+        
     }
 
     public static void classePessoa() {
         System.out.println("---------------Classe Pessoa---------------");
-        Pessoa[] pessoas = new Pessoa[2];
+        Pessoa[] pessoas = new Pessoa[3];
 
-        pessoas[0] = new Pessoa();
-        pessoas[1] = new Pessoa();
+        pessoas[0] = new Pessoa("929.181.232-23", "Pablo", 23);
+        pessoas[1] = new Pessoa("424.664.123-67");
+        pessoas[2] = new Pessoa("");
 
-        pessoas[0].setNome("Alice");
-        pessoas[0].setIdade(22);
+        System.out.printf("Pessoa: %s, com cpf %s, tem %d anos\n", pessoas[0].getNome(), pessoas[0].getCpf(), pessoas[0].getIdade());
 
-        pessoas[1].setNome("Bruno");
-        pessoas[1].setIdade(25);
-
-        pessoas[1].felizAniversario();
-        pessoas[1].felizAniversario();
-        pessoas[1].felizAniversario();
-
-        System.out.printf("Idade de %s é %d\n", pessoas[0].getNome(), pessoas[0].getIdade());
-        System.out.printf("Idade de %s é %d\n", pessoas[1].getNome(), pessoas[1].getIdade());
+        System.out.println(pessoas[1].getCpf());
+        
+        System.out.println(pessoas[2].getCpf());
     }
 
     public static void classeRetangulo() {
             System.out.println("---------------Classe Retângulo---------------");        
-            Retangulo retangulo1 = new Retangulo();
+            Retangulo retangulo1 = new Retangulo(5, -5);
             Retangulo[] retangulos = new Retangulo[10]; 
-
-            retangulo1.setLargura(5);
-            retangulo1.setAltura(4);
 
             System.out.printf("Retângulo 1 tem área: %.2f e perímetro: %.2f\n", retangulo1.getArea(), retangulo1.getPerimetro());
 
-            float razao = 0;
-            int numRet = -1;
+            int maiorAreaIndice = -1;
+            float maiorArea = 0;
+            int menorPerimetroIndice = -1;
+            float menorPerimetro = 1000;
 
             Random random = new Random(); 
 
             for (int i = 0; i < retangulos.length; i++) {
-                retangulos[i] = new Retangulo();
+                retangulos[i] = new Retangulo(random.nextFloat() * 10 + 1,random.nextFloat() * 10 + 1);
 
-                retangulos[i].setLargura(random.nextFloat() * 10 + 1); 
-                retangulos[i].setAltura(random.nextFloat() * 10 + 1);
+                float areaAtual = retangulos[i].getArea();
+                float perimetroAtual = retangulos[i].getPerimetro();
 
-                float razaoRet = retangulos[i].getArea() / retangulos[i].getPerimetro();
-
-                if (razao < razaoRet) {
-                    razao = razaoRet;
-                    numRet = i;
+                if (areaAtual > maiorArea) {
+                    maiorArea = areaAtual;
+                    maiorAreaIndice = i;
+                }
+                if (perimetroAtual < menorPerimetro) {
+                    menorPerimetro = perimetroAtual;
+                    menorPerimetroIndice = i;
                 }
         }
 
-        if (numRet != -1) { 
-            System.out.println("O retângulo com maior razão entre área e perímetro é o retângulo " + numRet + " com razão " + razao);
-        }
+        System.out.println("Triangulo de maior área foi o triangulo " + maiorAreaIndice + " com Área: " + maiorArea);
+        System.out.println("Triangulo de menor perimetro foi o triangulo " + menorPerimetroIndice + " com Perimetro: " + menorPerimetro);
     }
 
     public static void classeRelogio(){
         System.out.println("---------------Classe Relógio---------------");
-        Relogio relogio = new Relogio();
+        Relogio relogio1 = new Relogio((byte) 14, (byte) 58, (byte) 32);
+        Relogio relogio2 = new Relogio((byte) 22, (byte)52, (byte)52);
 
-        relogio.ajustaHora((byte) 14, (byte) 58, (byte) 32);
+        System.out.println(relogio1.getHora());
+        System.out.println(relogio2.getHora());
 
-        for (int i = 0; i < 2; i++){
-            relogio.avancaMinuto();
-        }
+        relogio2.sincronizaRelogio(relogio1);
 
-        System.out.println(relogio.getHora());
+        System.out.println(relogio1.getHora() + " é igual a " + relogio2.getHora());
 
-        relogio.ajustaHora((byte) 23, (byte)59, (byte)59);
+        relogio2.ajustaHora((byte) 22, (byte)52, (byte)52);
 
-        relogio.avancaSegundo();
-
-        System.out.println(relogio.getHora());
+        System.out.println("Diferença em segundos: " + relogio2.diferencaRelogio(relogio1));
     }
 
     public static void classeProduto(){

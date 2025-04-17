@@ -5,22 +5,31 @@ public class Relogio{
     private byte minuto;
     private byte segundo;
 
-    public void ajustaHora(byte hora, byte minuto, byte segundo){
+    public Relogio(byte hora, byte minuto, byte segundo){
+        if (!ajustaHora(hora, minuto, segundo)){
+            ajustaHora((byte)0, (byte)0 , (byte)0);
+        }
+    }
+
+    public boolean ajustaHora(byte hora, byte minuto, byte segundo){
+        boolean invalido = true;
         if(hora >= 0 && hora < 24){
             this.hora = hora;
         }else{
-            System.out.println("Hora inválida");
+            invalido = false;
         }
         if(minuto >= 0 && minuto < 60){
             this.minuto = minuto;
         }else{
-            System.out.println("Minuto inválido");
+            invalido = false;
         }
         if(segundo >= 0 && segundo < 60){
             this.segundo = segundo;
         }else{
-            System.out.println("Segundo inválido");
+            invalido = false;
         }
+
+        return invalido;
     }
 
     public String getHora(){
@@ -48,5 +57,20 @@ public class Relogio{
             avancaMinuto();
             segundo = 0;
         }
+    }
+
+    public void sincronizaRelogio (Relogio b){
+        ajustaHora(b.hora,b.minuto,b.segundo); 
+    }
+
+    public int diferencaRelogio (Relogio b){
+        int difHora = b.hora - this.hora;
+        if(difHora < 0) {difHora *= -1;}
+        int difMinuto = b.minuto - this.minuto;
+        if(difMinuto < 0) {difMinuto *= -1;}
+        int difSegundo = b.segundo - this.segundo;
+        if(difSegundo < 0) {difSegundo *= -1;}
+
+        return difSegundo + (difMinuto * 60) + (difHora * 3600);
     }
 }   

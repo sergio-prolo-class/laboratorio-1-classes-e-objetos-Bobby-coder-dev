@@ -2,20 +2,36 @@ package ifsc.poo;
 
 public class Lampada{
     private boolean ligada;
+    private static int num_lampadas;
 
-    public Lampada(){
-        ligada = false;
+    public Lampada(boolean ligada){
+        this.ligada = ligada;
+        num_lampadas++;
     }
 
-    public void ligar(){
-        ligada = true;
+    public boolean ligar(){
+        if(this.ligada == true){
+            return false;
+        } else {
+            this.ligada = true;
+            return true;
+        }
     }
 
-    public void desligar(){
-        ligada = false;
+    public boolean desligar(){
+        if(this.ligada == false){
+            return false;
+        } else {
+            this.ligada = false;
+            return true;
+        }
     }
 
     public boolean verEstado(){
-        return ligada;
+        return this.ligada;
+    }
+
+    public static int contar_lampadas(){
+        return num_lampadas;
     }
 }
