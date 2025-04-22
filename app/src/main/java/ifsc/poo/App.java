@@ -105,11 +105,12 @@ public class App {
     }
 
     public static void classeProduto(){
-        Produto produto1 = new Produto();
-        Produto produto2 = new Produto();
-
         System.out.println("---------------Classe Produto---------------");
 
+        Produto produto1 = new Produto();
+        Produto produto2 = new Produto();
+        
+        /*
         produto1.setNome("Geladeira");
         produto1.setPreco(832);
 
@@ -124,6 +125,20 @@ public class App {
 
         System.out.println(produto1.anuncio());
         System.out.println(produto2.anuncio());
+        */
+
+        Produto p1 = new Produto("Geladeira", 832);
+        p1.setDesconto(6);
+
+        Produto p2 = new Produto("Micro-ondas", 499);
+        p2.setDesconto(12);
+        
+        Produto p3 = new Produto("Fogão", 677);
+        
+        String[] csv = Produto.exportarCSV();
+        for (String linha : csv) {
+            System.out.println(linha);
+        }
 
         //(por algum motivo minha classe produto so funciona no diretorio ifsc e não junto com as outras) 
 
@@ -131,7 +146,7 @@ public class App {
         //eu trataria os valores de preço e desconto como float, para evitar perda de precisão
         //assim eu poderia tratar o preço com desconto no próprio metodo de preço, botando desconto de 0 caso não houvesse colocado um desconto ainda
     }
-
+/*
     public static void classeLivro(){
         System.out.println("---------------Classe Livro---------------");
         Livro livro = new Livro();
@@ -185,7 +200,7 @@ public class App {
         livro.lerPaginas(100);
 
     }
-
+*/
     public static void main(String[] args) {
         System.out.println("Escolha a classe que queira testar: \n1 - Lampada \n2 - Pessoa \n3 - Retangulo \n4 - Relogio \n5 - Produto \n6 - Livro \n7 - Sair");
         Scanner scanner = new Scanner(System.in);
