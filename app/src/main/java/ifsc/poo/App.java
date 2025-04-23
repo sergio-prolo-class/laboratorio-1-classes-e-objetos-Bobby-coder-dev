@@ -106,11 +106,12 @@ public class App {
 
     public static void classeProduto(){
         System.out.println("---------------Classe Produto---------------");
-
+        
+        /*
         Produto produto1 = new Produto();
         Produto produto2 = new Produto();
         
-        /*
+        
         produto1.setNome("Geladeira");
         produto1.setPreco(832);
 
@@ -201,8 +202,27 @@ public class App {
 
     }
 */
+    public static void classeNavio(){
+        Navio navio = new Navio(3, 2, 4, false, 'N');
+
+        System.out.println("Afundado? " + navio.isAfundado());
+
+        System.out.println("Atingido? " + navio.isAtingido());
+
+        
+        System.out.println("Bombardeando (1,1): " + navio.bombardear(1, 1)); 
+
+        
+        System.out.println("Bombardeando (2,4): " + navio.bombardear(2, 4)); 
+        System.out.println("Bombardeando (2,5): " + navio.bombardear(2, 5)); 
+        System.out.println("Bombardeando (2,6): " + navio.bombardear(2, 6)); 
+
+        System.out.println("Atingido? " + navio.isAtingido()); 
+        System.out.println("Afundado? " + navio.isAfundado());
+    }
+
     public static void main(String[] args) {
-        System.out.println("Escolha a classe que queira testar: \n1 - Lampada \n2 - Pessoa \n3 - Retangulo \n4 - Relogio \n5 - Produto \n6 - Livro \n7 - Sair");
+        System.out.println("Escolha a classe que queira testar: \n1 - Lampada \n2 - Pessoa \n3 - Retangulo \n4 - Relogio \n5 - Produto \n6 - Navio \n7 - Sair");
         Scanner scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
 
@@ -217,7 +237,9 @@ public class App {
         
             case 5 -> classeProduto();
 
-            case 6 -> classeLivro();
+            //case 6 -> classeLivro();
+
+            case 6 -> classeNavio();
 
             case 7 -> {
                 System.out.println("Saindo...");

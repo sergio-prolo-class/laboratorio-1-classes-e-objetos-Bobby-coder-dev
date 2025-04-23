@@ -23,8 +23,8 @@ public class Produto{
         numProdutos++;
         totalCriados++;
 
-        ultimosProdutos[totalCriados] = this;
-        totalCriados = (totalCriados + 1) % ultimosProdutos.length;
+        maxProdutos[totalCriados] = this;
+        totalCriados = (totalCriados + 1) % maxProdutos.length;
     }
 
     public void setNome(String nome){
@@ -65,9 +65,10 @@ public class Produto{
         linhas[0] = "Código;Nome;Preço;Desconto";
 
         for (int i = 0; i < registros; i++) {
-            Produto p = ultimosProdutos[(totalCriados - registros + i) % LIMITE_REGISTROS];
+            Produto p = maxProdutos[(totalCriados - registros + i) % LIMITE_REGISTROS];
             String precoFormatado = String.format("%.2f", p.getPreco()).replace('.', ',');
             linhas[i + 1] = String.format("%s;%s;%s;%d", p.codigo, p.nome, precoFormatado, p.desconto);
         }
+        return linhas;
     }
 }

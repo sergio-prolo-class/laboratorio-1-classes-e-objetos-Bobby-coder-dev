@@ -9,7 +9,7 @@ public class Navio {
 
     private boolean vertical;
 
-    private String letra;
+    private char letra;
 
     private boolean afundado;
 
@@ -44,16 +44,19 @@ public class Navio {
 
     public boolean isAfundado() {
         int atingido = 0;
-        for (int i = 0; i < this.atingido[].length; i++){
-            if (this.atingido[i] == true){ atingido++; }
-        }
-        return atingido == this.atingido[].length;
+        for (int i = 0; i < this.atingido.length; i++) {
+           if (this.atingido[i]) {
+                atingido++;
+            }
+    }
+        return atingido == this.atingido.length;
     }
 
     public boolean isAtingido(){
-        for (int i = 0; i < this.atingido[].length; i++){
+        for (int i = 0; i < this.atingido.length; i++){
             if (this.atingido[i] == true) { return true; }
         }
+        return false;
     }
 
     public boolean bombardear(int linha, int coluna) {
@@ -62,6 +65,7 @@ public class Navio {
                 for (int i = 0; i < this.tamanho; i++){
                     if ((this.linha + i) == linha){
                         if(this.atingido[i] != true){
+                            this.atingido[i] = true;
                             return true;
                         }
                     }
@@ -74,6 +78,7 @@ public class Navio {
                 for (int i = 0; i < this.tamanho; i++){
                     if ((this.coluna + i) == coluna){
                         if(this.atingido[i] != true){
+                            this.atingido[i] = true;
                             return true;
                         }
                     }
@@ -81,5 +86,6 @@ public class Navio {
             }
             return false;
         }
+        return false;
     }
 }
